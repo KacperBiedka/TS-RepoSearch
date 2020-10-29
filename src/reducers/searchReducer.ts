@@ -1,8 +1,12 @@
 import { actionTypes } from "../actions";
 import { searchErrorActionType } from '../actions/types';
 
+interface stateType {
+    searchError: string | null
+};
+
 const searchReducer = (
-  state = {
+  state: stateType = {
     searchError: null,
   },
   action: searchErrorActionType

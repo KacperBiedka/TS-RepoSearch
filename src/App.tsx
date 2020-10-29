@@ -1,19 +1,14 @@
-import React, { useEffect } from 'react';
-import { updateSearchError } from "./actions/index";  
-import { useDispatch } from "react-redux";
-import './App.css';
+import React from 'react';
+import './App.scss';
+import { Route, BrowserRouter } from 'react-router-dom';
+import routes from './routes';
 
-const App = () => {
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(updateSearchError('empty'));
-  }, []);
-  return (
-    <div className="App">
-    </div>
-  );
+const App: React.FunctionComponent = () => {
+  const routeComponents = routes.map(({ path, component }, key) => {
+    return (
+    <Route exact path={path} component={component} key={key} />
+  )});
+  return <BrowserRouter>{routeComponents}</BrowserRouter>;
 }
 
 export default App;
