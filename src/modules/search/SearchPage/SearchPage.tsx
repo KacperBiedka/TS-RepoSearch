@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
-const SearchPage: React.FunctionComponent = () => {
+const SearchPage: FC = () => {
   return (
     <div className="search-page">
       test

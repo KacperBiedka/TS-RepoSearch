@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { FC } from 'react';
 import classes from './Input.module.scss';
 
-export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface IInputProps {
     value: string | number,
     changeCallback: (value: string | number) => {}
 }
 
-const Input = ({ value, changeCallback, ...options}: IInputProps) => {
+const Input: FC<IInputProps> = ({ value, changeCallback, ...options}) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         changeCallback(e.target.value);
     };

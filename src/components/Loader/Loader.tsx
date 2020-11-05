@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import classes from "./Loader.module.scss";
 
-const Loader = () => {
+const Loader:FC = () => {
   return (
     <div className={classes.spinner}>
       <div className={classes.rect1}></div>
