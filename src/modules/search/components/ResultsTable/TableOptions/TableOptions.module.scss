@@ -1,0 +1,17 @@
+.perPageInputWrapper {
+  width: 30%;
+  padding: 2%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  input {
+    width: 25px;
+    padding: 7px 20px;
+    display: inline-block;
+    margin: 0 5%;
+  }
+  label {
+    display: inline-block;
+  }
+}

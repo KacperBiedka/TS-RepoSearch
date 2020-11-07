@@ -1,0 +1,15 @@
+.chevron {
+  opacity: 0;
+  padding: 0 2%;
+  display: inline;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  &.active {
+    opacity: 1;
+  }
+}
+
+.asc {
+  .chevron {
+    transform: rotate(180deg);
+  }
+}

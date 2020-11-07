@@ -1,0 +1,16 @@
+@import "../../../../../variables";
+
+.tablePagination {
+  width: 45%;
+  margin: 2% auto;
+  .paginationNumber {
+    width: 5%;
+    display: inline-block;
+    color: $text;
+    transition: color 1s ease;
+    cursor: pointer;
+    &.active {
+      color: $primary;
+    }
+  }
+}
