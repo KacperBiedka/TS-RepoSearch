@@ -1,7 +1,7 @@
 import { actionTypes } from "../actions";
 import { searchErrorActionType } from '../actions/types';
 
-interface stateType {
+export interface stateType {
     searchError: string | null
 };
 

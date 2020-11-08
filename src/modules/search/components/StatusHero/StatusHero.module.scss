@@ -1,0 +1,16 @@
+@import "../../../../variables";
+
+.hero {
+  text-align: center;
+  color: $text;
+  font-weight: 400;
+  margin: 2% auto;
+  font-size: 150%;
+  flex: 0 1 auto;
+  &.success {
+    color: $success;
+  }
+  &.error {
+    color: $error;
+  }
+}
