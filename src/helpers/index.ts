@@ -8,7 +8,7 @@ import { sortByFieldType,
  * Accepts the date in atom format and returns display string (DD-MM-YYYY)
  * @param {Date in atom format} date
  */
-export const convertAtomDate = (date: Date) => {
+export const convertAtomDate = (date: Date | string) => {
     let convertedDate: Date = new Date(date);
     convertedDate.toISOString();
     let day: string | number = convertedDate.getUTCDate();

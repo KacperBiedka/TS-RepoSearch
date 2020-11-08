@@ -1,0 +1,46 @@
+@import "../../../../variables";
+
+.tableWrapper {
+  text-align: center;
+  color: $text;
+  margin-top: 2%;
+  font-weight: 400;
+  width: 100%;
+  height: 100%;
+  h2 {
+    font-size: 130%;
+  }
+  .resultsTable {
+    margin: auto;
+    padding: 2%;
+    width: auto;
+    border-collapse: collapse;
+    color: $text-secondary;
+    box-shadow: 0 0 3px $idle;
+    td,
+    th {
+      padding: 1.5vw;
+      margin: 2% 2%;
+      text-align: left;
+      white-space: nowrap;
+    }
+    tbody {
+      box-shadow: 0 0 3px $idle;
+      td:first-child {
+        color: $primary;
+      }
+      tr {
+        box-shadow: 0 0 1.5px $idle;
+      }
+    }
+    thead {
+      color: $text;
+      th {
+        border-right: solid 1px $idle;
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}
