@@ -1,4 +1,4 @@
-interface RepositoryInfo {
+export interface RepositoryInfo {
     id: number;
     node_id: string;
     name: string;
@@ -15,6 +15,7 @@ interface RepositoryInfo {
     homepage: string;
     size: number;
     stargazers_count: number;
+    stars: number;
     watchers_count: number;
     language: string;
     forks_count: number;
@@ -24,7 +25,7 @@ interface RepositoryInfo {
     score: number;
 }
 
-interface OwnerInfo {
+export interface OwnerInfo {
     login: string;
     id: number;
     node_id: string;

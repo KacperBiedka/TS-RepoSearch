@@ -1,12 +1,12 @@
 export type filterFieldType = string | number | Date;
 
 interface IFilterParam {
-    [name: string]: filterFieldType
+    [name: string]: any
 }
 
 export type compareValuesType = (a: IFilterParam, b: IFilterParam) => number; 
 
-export type sortByFieldType = (array: IFilterParam[], field: string, order: string) => {}[];
+export type sortByFieldType = (array: any[], field: string, order: string) => any[];
 
 export type getCacheValueType = (name: string, callback: (value: any) => void) => void;
 

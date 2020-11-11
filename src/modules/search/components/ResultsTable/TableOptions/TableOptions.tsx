@@ -6,7 +6,7 @@ import classes from "./TableOptions.module.scss";
 
 interface IOptionsProps {
     perPage: number,
-    updateCallback: (value: React.ReactText) => void
+    updateCallback: (value: any) => void
 }
 
 const TableOptions: FC<IOptionsProps> = ({ perPage, updateCallback }) => {

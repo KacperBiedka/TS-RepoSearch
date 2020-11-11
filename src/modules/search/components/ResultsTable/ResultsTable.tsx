@@ -5,23 +5,16 @@ import { convertAtomDate } from "../../../../helpers/index";
 import TableOptions from "./TableOptions/TableOptions";
 import { v4 as uuid } from "uuid";
 import TablePagination from "./TablePagination/TablePagination";
-
-interface IRepoDataObject {
-    owner: string,
-    name: string,
-    stars: number,
-    id: string,
-    created_at: string
-}
+import { IFilter, IDisplayDataObject } from '../../containers/SearchResults/SearchResultsTypes';
 
 interface IResultsTableProps {
-    repoData: IRepoDataObject[],
-    filters: [],
+    repoData: IDisplayDataObject[],
+    filters: IFilter[],
     sortData: (index: number) => void,
     perPage: number,
     rowNumber: number,
     currentPage: number,
-    perPageCallback: (value: React.ReactText) => void,
+    perPageCallback: (value: number) => void,
     paginationNumbers: number[],
     updateCurrentPage: (number: number) => void
 }
