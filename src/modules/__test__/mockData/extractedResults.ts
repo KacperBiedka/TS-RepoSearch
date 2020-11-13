@@ -1,6 +1,7 @@
 import mockResults from "./queryResults.json";
+import { MockResponse } from './types';
 
-const extractListData = (data) => {
+const extractListData = (data: MockResponse) => {
   let displayData = null;
   if (data) {
     if (data.items.length > 0) {
