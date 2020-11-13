@@ -1,3 +1,3 @@
-export const findByTestAttr = (wrapper, val: string) => {
+export const findByTestAttr = (wrapper: any, val: string) => {
     return wrapper.find(`[data-test="${val}"]`);
 };
