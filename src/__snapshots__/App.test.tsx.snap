@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the App component 1`] = `
+<BrowserRouter>
+  <Route
+    component={[Function]}
+    exact={true}
+    key="0"
+    path="/"
+  />
+</BrowserRouter>
+`;
+
+exports[`renders the component 1`] = `
+<BrowserRouter>
+  <Route
+    component={[Function]}
+    exact={true}
+    key="0"
+    path="/"
+  />
+</BrowserRouter>
+`;
