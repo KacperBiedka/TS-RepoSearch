@@ -9,7 +9,7 @@ interface IFilter {
     active: boolean
 }
 
-interface IFilterProps {
+export interface IFilterProps {
     filter: IFilter,
     sortData: (index: number) => void,
     index: number
