@@ -1,7 +1,15 @@
 import mockResults from "./queryResults.json";
 import { MockResponse } from './types';
 
-const extractListData = (data: MockResponse) => {
+export interface IMockResultObject {
+  name: string,
+  owner: string,
+  stars: number,
+  created_at: string,
+  id: string | number,
+}
+
+const extractListData = (data: MockResponse): IMockResultObject[] | null => {
   let displayData = null;
   if (data) {
     if (data.items.length > 0) {

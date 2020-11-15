@@ -8,7 +8,7 @@ import TablePagination from "./TablePagination/TablePagination";
 import { IFilter, IDisplayDataObject } from '../../containers/SearchResults/SearchResultsTypes';
 
 interface IResultsTableProps {
-    repoData: IDisplayDataObject[],
+    repoData: IDisplayDataObject[] | null,
     filters: IFilter[],
     sortData: (index: number) => void,
     perPage: number,
