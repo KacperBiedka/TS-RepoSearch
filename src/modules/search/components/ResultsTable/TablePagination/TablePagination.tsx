@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import classes from "./TablePagination.module.scss";
 import { v4 as uuid } from "uuid";
 
-interface IPaginationProps {
+export interface IPaginationProps {
     paginationNumbers: number[],
     updateCurrentPage: (number: number) => void,
     currentPage: number 
