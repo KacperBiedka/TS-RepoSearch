@@ -4,7 +4,7 @@ import classes from "./TableOptions.module.scss";
 
 // Potentially this compoennt could contain more options related to the table content
 
-interface IOptionsProps {
+export interface IOptionsProps {
     perPage: number,
     updateCallback: (value: any) => void
 }
