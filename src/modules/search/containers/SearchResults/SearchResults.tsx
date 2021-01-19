@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { FC, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { ISearchResultsProps,
          IRepoData,
          ICachedResults,
          FilterType,
          IDisplayDataObject,
 } from './SearchResultsTypes';
-import { useDispatch } from "react-redux";
+
 import { updateSearchError } from "../../../../actions";
 
 import GithubApi, { RepositoryInfo } from "../../../../api/GithubApi";
@@ -15,15 +16,15 @@ import Input from "../../../../components/Input/Input";
 import Loader from "../../../../components/Loader/Loader";
 import StatusHero from "../../components/StatusHero/StatusHero";
 import ResultsTable from "../../components/ResultsTable/ResultsTable";
-import useUrlSearchParams from "../../../../hooks/useUrlSearchParams";
 import {
   sortByField,
   getCacheValue,
   updateCacheValue,
 } from "../../../../helpers/index";
+import { useQueryParams, StringParam } from 'use-query-params';
 import classes from "./SearchResults.module.scss";
 
-const SearchResults: FC<ISearchResultsProps> = ({ history }) => {
+const SearchResults: FC<ISearchResultsProps> = () => {
   const [searchResults, setSearchResults] = useState<IDisplayDataObject[]>([]);
   const [prevSearchResults, setPrevSearchResults] = useState<ICachedResults[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +34,12 @@ const SearchResults: FC<ISearchResultsProps> = ({ history }) => {
   const [paginationNumbers, setPaginationNumbers] = useState<number[]>([]);
   const [perPage, setPerPage] = useState<number>(10);
   const [rowNumber, setRowNumber] = useState(10);
+  const [urlParams, setUrlParams] = useQueryParams({
+    query: StringParam,
+    field: StringParam,
+    order: StringParam
+  });
+
   const [filters, setFilters] = useState([
     {
       name: "Name",
@@ -62,11 +69,6 @@ const SearchResults: FC<ISearchResultsProps> = ({ history }) => {
 
   const dispatch = useDispatch();
 
-  // Retrieve search param values with useLocation()
-  const urlQuery = useUrlSearchParams("query");
-  const urlField = useUrlSearchParams("field");
-  const urlOrder = useUrlSearchParams("order");
-
   const getCachedValues = () => {
     getCacheValue("perPage", (number) => setPerPage(number));
     getCacheValue("prevResults", (results) => setPrevSearchResults(results));
@@ -74,12 +76,12 @@ const SearchResults: FC<ISearchResultsProps> = ({ history }) => {
   };
 
   const retrieveUrlValues = () => {
-    if (urlQuery) {
-      setSearchQuery(urlQuery);
+    if (urlParams.query) {
+      setSearchQuery(urlParams.query);
       setIsLoading(true);
     }
-    if (urlField && urlOrder) {
-      updateActiveFilter(urlField, urlOrder);
+    if (urlParams.field && urlParams.order) {
+      updateActiveFilter(urlParams.field, urlParams.order);
     }
   };
 
@@ -177,9 +179,10 @@ const SearchResults: FC<ISearchResultsProps> = ({ history }) => {
     } else {
       filter.order = "asc";
     }
-    history.push({
-      pathname: "/",
-      search: `?query=${searchQuery}&field=${filter.field}&order=${filter.order}`,
+    setUrlParams({
+      query: searchQuery,
+      field: filter.field,
+      order: filter.order
     });
     filter.active = true;
     updatedFilters[index] = filter;
@@ -218,9 +221,10 @@ const SearchResults: FC<ISearchResultsProps> = ({ history }) => {
     updateCacheValue("lastSearch", query);
     const activeFilter: FilterType = filters.find((filter) => filter.active);
     if (activeFilter) {
-      history.push({
-        pathname: "/",
-        search: `?query=${query}&field=${activeFilter.field}&order=${activeFilter.order}`,
+      setUrlParams({
+        query: searchQuery,
+        field: activeFilter.field,
+        order: activeFilter.order
       });
     }
     const prevResults: ICachedResults[]= [...prevSearchResults];
