@@ -9,7 +9,7 @@ import { ISearchResultsProps,
          IDisplayDataObject,
 } from './SearchResultsTypes';
 
-import { updateSearchError } from "../../../../actions";
+import { updateSearchError } from "../../actions";
 
 import GithubApi, { RepositoryInfo } from "../../../../api/GithubApi";
 import Input from "../../../../components/Input/Input";

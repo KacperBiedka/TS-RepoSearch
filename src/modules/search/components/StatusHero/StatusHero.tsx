@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import classes from "./StatusHero.module.scss";
 import { useSelector } from 'react-redux';
-import { stateType } from '../../../../reducers/searchReducer';
+import { stateType } from '../../reducers/searchReducer';
 
 interface IStatusHeroProps {
     value: string
