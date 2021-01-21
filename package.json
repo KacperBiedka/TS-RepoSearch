@@ -13,6 +13,8 @@
     "@types/node": "^12.19.2",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "cypress": "^6.3.0",
+    "eslint-plugin-cypress": "^2.11.2",
     "node-sass": "^4.14.1",
     "query-string": "^6.13.8",
     "react": "^17.0.1",
@@ -33,12 +35,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --runInBand --watchAll=false",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress": "cypress open"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ],
     "rules": {
       "react-hooks/exhaustive-deps": "off"
