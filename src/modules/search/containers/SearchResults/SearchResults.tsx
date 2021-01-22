@@ -262,10 +262,11 @@ const SearchResults: FC<ISearchResultsProps> = () => {
       <StatusHero value={lastSearch} />
       <Input
         value={searchQuery}
+        data-test="repo-search-input"
         changeCallback={(keyword: string) => setSearchQuery(keyword)}
       />
       {isLoading ? (
-        <Loader />
+        <Loader data-test="search-results-loader" />
       ) : (
         <ResultsTable
           repoData={searchResults}

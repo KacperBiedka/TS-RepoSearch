@@ -9,8 +9,8 @@ import routes from './routes';
 const App:FC = () => {
   const routeComponents = routes.map(({ path, component }, key) => {
     return (
-      <QueryParamProvider ReactRouterRoute={Route}>
-            <Route exact path={path} component={component} key={key} />
+      <QueryParamProvider ReactRouterRoute={Route} key={key}>
+            <Route exact path={path} component={component} />
       </QueryParamProvider>
   )});
   return <BrowserRouter>{routeComponents}</BrowserRouter>;
