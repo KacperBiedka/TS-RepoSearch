@@ -179,13 +179,14 @@ const SearchResults: FC<ISearchResultsProps> = () => {
     } else {
       filter.order = "asc";
     }
+    filter.active = true;
+    updatedFilters[index] = filter;
+    setFilters(updatedFilters);
     setUrlParams({
       query: searchQuery,
       field: filter.field,
       order: filter.order
     });
-    filter.active = true;
-    updatedFilters[index] = filter;
   };
 
   const updateActiveFilter = (field: string, order: string) => {
@@ -204,6 +205,11 @@ const SearchResults: FC<ISearchResultsProps> = () => {
     }
     updatedFilters[activeIndex] = newFilter;
     setFilters(updatedFilters);
+    setUrlParams({
+      query: searchQuery,
+      field: newFilter.field,
+      order: newFilter.order
+    });
   };
 
   const calculatePaginationNumbers = (array: any[], perPageNumber: number) => {

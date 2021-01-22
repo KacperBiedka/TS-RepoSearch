@@ -20,7 +20,7 @@ describe("RepoSearch page", () => {
         });
         it("correctly updates url parameters", () => {
             cy.location().should((loc) => {
-                expect(loc.search).to.eq('?field=name&order=asc&query=test');
+                expect(loc.search).to.eq('?field=name&order=desc&query=test');
             });
         });
     });
