@@ -23,6 +23,6 @@
   },
   "include": [
     "src",
-    "./node_modules/cypress"
-  ]
+  ],
+  "exclude": ["node_modules"]
 }

@@ -49,3 +49,8 @@ export interface IDisplayDataObject {
     created_at: string;
     id: string | number;
 }
+
+export interface IRepoData {
+    error: string | null,
+    data: IDisplayDataObject[] | null
+}
