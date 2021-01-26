@@ -41,3 +41,11 @@ export interface SearchRepositoriesResponse {
     incomplete_results: boolean;
     items: RepositoryInfo[];
 }
+
+export interface IDisplayDataObject {
+    owner: string;
+    name: string;
+    stars: number;
+    created_at: string;
+    id: string | number;
+}

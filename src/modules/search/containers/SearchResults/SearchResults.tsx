@@ -11,7 +11,7 @@ import { ISearchResultsProps,
 
 import { updateSearchError } from "../../actions";
 
-import GithubApi, { RepositoryInfo } from "../../../../api/GithubApi";
+import GithubApi from "../../../../api/GithubApi";
 import Input from "../../../../components/Input/Input";
 import Loader from "../../../../components/Loader/Loader";
 import StatusHero from "../../components/StatusHero/StatusHero";
@@ -103,8 +103,8 @@ const SearchResults: FC<ISearchResultsProps> = () => {
       );
       const results: IRepoData = await githubApi.getSearchResults(searchQuery);
       if (results.data) {
-        addSearchEntry(searchQuery, results.data.items);
-        extractListData(results.data.items);
+        addSearchEntry(searchQuery, results.data);
+        extractListData(results.data);
       }
       dispatch(updateSearchError(results.error));
       updateCurrentPage(1);
@@ -137,19 +137,10 @@ const SearchResults: FC<ISearchResultsProps> = () => {
     return () => clearTimeout(delayDebounce);
   }, [searchQuery]);
 
-  const extractListData = (data: RepositoryInfo[]) => {
-    let displayData: IDisplayDataObject[] = [];
+  const extractListData = (data: IDisplayDataObject[]) => {
+    let displayData = data;
     if (data) {
       if (data.length > 0) {
-        displayData = data.map((item) => {
-          return {
-            name: item.name,
-            owner: item.owner.login,
-            stars: item.stargazers_count,
-            created_at: item.created_at,
-            id: item.id,
-          };
-        });
         const activeFilter: FilterType = filters.find((filter) => filter.active);
         if (activeFilter) {
           displayData = sortByField(
@@ -222,7 +213,7 @@ const SearchResults: FC<ISearchResultsProps> = () => {
     }
   };
 
-  const addSearchEntry = (query: string, data: RepositoryInfo[]) => {
+  const addSearchEntry = (query: string, data: IDisplayDataObject[]) => {
     setLastSearch(query);
     updateCacheValue("lastSearch", query);
     const activeFilter: FilterType = filters.find((filter) => filter.active);

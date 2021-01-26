@@ -1,5 +1,4 @@
 import { History } from 'history';
-import { SearchRepositoriesResponse, RepositoryInfo } from '../../../../api/GithubApi';
 
 export interface ISearchResultsProps {
     history: History
@@ -15,7 +14,7 @@ export interface IDisplayDataObject {
 
 export interface ICachedResults {
     query: string,
-    data: RepositoryInfo[]
+    data: IDisplayDataObject[]
 }
 
 export interface IFilter {
@@ -30,6 +29,6 @@ export type FilterType = IFilter | undefined;
 
 export interface IRepoData {
     error: string | null,
-    data: SearchRepositoriesResponse | null
+    data: IDisplayDataObject[] | null
 }
 

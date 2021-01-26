@@ -1,4 +1,4 @@
-import { SearchRepositoriesResponse } from "./types";
+import { RepositoryInfo, IDisplayDataObject } from "./types";
 
 /**
  * helper GithubApi class with basic validation
@@ -12,7 +12,7 @@ import { SearchRepositoriesResponse } from "./types";
  }
 
  interface IResults {
-     data: SearchRepositoriesResponse | null,
+     data: IDisplayDataObject[] | null,
      error: string | null
  }
 
@@ -55,8 +55,19 @@ export default class GithubApi {
         return res
           .json()
           .then((res) => {
+            const displayData: IDisplayDataObject[] = [];
+            res.items.forEach((item: RepositoryInfo) => {
+              const displayObject: IDisplayDataObject = {
+                name: item.name,
+                owner: item.owner.login,
+                stars: item.stargazers_count,
+                created_at: item.created_at,
+                id: item.id
+              }
+              displayData.push(displayObject);
+            });
             return {
-              data: res,
+              data: displayData,
               error: null,
             };
           })
