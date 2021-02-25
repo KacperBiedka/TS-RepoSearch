@@ -1,5 +1,4 @@
-import { statusMessages, getRepoSearchResults } from '../../fixtures/search';
-import { sortByField } from '../../../src/helpers';
+import { statusMessages } from '../../fixtures/search';
 
 const searchQuery = 'siema';
 
@@ -24,12 +23,7 @@ describe("RepoSearch page", () => {
         });
         it("correctly displays data after search", () => {
             cy.getByDataTest('search-results-table').should('exist', { timeout: 10000 })
-            cy.getByDataTest('results-table-body-row').first().should(async row => {
-                const repoName = row[0].children[0].innerText;
-                let repoData = await getRepoSearchResults(searchQuery);
-                repoData = sortByField(repoData, 'name', 'asc');
-                expect(repoName).to.eq(repoData[0].name);
-            });
+            cy.getByDataTest('results-table-body-row').first().children().first().should('have.text', 'xtal-siema')
         });
         it("correctly updates url parameters", () => {
             cy.location().should(async (loc) => {
@@ -49,12 +43,7 @@ describe("RepoSearch page", () => {
         });
         it("correctly filters data", () => {
             cy.getByDataTest("filter-header-cell").first().click()
-            cy.getByDataTest('results-table-body-row').first().should(async row => {
-                const repoName = row[0].children[0].innerText;
-                let repoData = await getRepoSearchResults(searchQuery);
-                repoData = sortByField(repoData, 'name', 'desc');
-                expect(repoName).to.eq(repoData[0].name);
-            });
+            cy.getByDataTest('results-table-body-row').first().children().first().should('have.text', 'Balon')
         });
         it("updates url parameters after filtering", () => {
             cy.location().should((loc) => {
