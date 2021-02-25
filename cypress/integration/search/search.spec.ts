@@ -23,7 +23,7 @@ describe("RepoSearch page", () => {
         });
         it("correctly displays data after search", () => {
             cy.getByDataTest('search-results-table').should('exist', { timeout: 10000 })
-            cy.getByDataTest('results-table-body-row').first().children().first().should('have.text', 'xtal-siema')
+            cy.getByDataTest('results-table-body-row').first().children().first().contains('xtal-siema')
         });
         it("correctly updates url parameters", () => {
             cy.location().should(async (loc) => {
@@ -43,7 +43,7 @@ describe("RepoSearch page", () => {
         });
         it("correctly filters data", () => {
             cy.getByDataTest("filter-header-cell").first().click()
-            cy.getByDataTest('results-table-body-row').first().children().first().should('have.text', 'Balon')
+            cy.getByDataTest('results-table-body-row').first().children().first().contains('Balon')
         });
         it("updates url parameters after filtering", () => {
             cy.location().should((loc) => {
@@ -53,5 +53,15 @@ describe("RepoSearch page", () => {
         it("shows next data page on pagination click", () => {
             cy.getByDataTest("pagination-paragraph").last().click();
         });
+    });
+    context("Error handling", () => {
+        it("shows correct message for empty search query", () => {
+            cy.getByDataTest('repo-search-input').clear().type(" ");
+            cy.getByDataTest('status-hero').contains(statusMessages.empty);
+        })
+        it("shows correct message for too long search query", () => {
+            cy.getByDataTest('repo-search-input').clear().type('very long name made for testing purposes');
+            cy.getByDataTest('status-hero').contains(statusMessages.long);
+        })
     });
 });
